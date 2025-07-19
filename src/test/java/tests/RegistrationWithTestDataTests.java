@@ -51,19 +51,27 @@ public class RegistrationWithTestDataTests extends TestBase {
     }
 
     @Test
+    @Tag("jenkins")
     void minDataTest() {
-        registrationPage.openPage()
-                .setFirstName(firstName)
+        step("Open form", () -> {
+        registrationPage
+                .openPage()
+                .removeBanner();
+        });
+        step("Fill form", () -> {
+        registrationPage.setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmail(userEmail)
                 .setGender(userGender)
                 .setUserNumber(userPhone)
                 .clickSubmitButton();
-
+        });
+        step("Check form", () -> {
         registrationPage.checkResults("Student Name", firstName + " " + lastName)
                 .checkResults("Student Email", userEmail)
                 .checkResults("Gender", userGender)
                 .checkResults("Mobile", userPhone);
+        });
     }
 
     @Test
