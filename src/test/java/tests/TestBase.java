@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class TestBase {
 
-    public static final String SELENOID_URL = System.getProperty("selenoid_url");
+    public static final String SELENOID_URL = System.getProperty("selenoid_url", "selenoid.autotests.cloud");
 
 
     @BeforeAll
